@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Mahmud2074\QueryProfiler\Services;
+namespace Mahmud2074\QueryLogger\Services;
 
 class QueryFormatter
 {

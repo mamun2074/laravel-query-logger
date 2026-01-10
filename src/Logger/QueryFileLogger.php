@@ -8,7 +8,7 @@ class QueryFileLogger
 {
     public static function write($data)
     {
-        $path = config('query-profiler.log_path');
+        $path = config('query-logger.log_path');
 
         if (!File::exists($path)) {
             File::makeDirectory($path, 0755, true);

@@ -10,7 +10,7 @@ class QueryLoggerServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/query-logger.php', 'query-logger');
+        $this->mergeConfigFrom(__DIR__ . './config/query-logger.php', 'query-logger');
 
         $this->app->singleton(QueryCollector::class);
     }
@@ -22,7 +22,7 @@ class QueryLoggerServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/../config/query-logger.php' => config_path('query-logger.php'),
+            __DIR__ . './config/query-logger.php' => config_path('query-logger.php'),
         ], 'config');
 
         DB::listen(function ($query) {

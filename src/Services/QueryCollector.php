@@ -2,6 +2,8 @@
 
 namespace Mahmud2074\QueryLogger\Services;
 
+use Mahmud2074\QueryLogger\Services\QueryFormatter;
+
 class QueryCollector
 {
     protected  $queries = [];

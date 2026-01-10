@@ -1,5 +1,5 @@
 {
-    "name": "mahmud/laravel-query-logger",
+    "name": "mahmud2074/laravel-query-logger",
     "description": "Route-wise SQL query logger with N+1 and slow query detection",
     "type": "library",
     "license": "MIT",
