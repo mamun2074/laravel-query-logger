@@ -3,7 +3,7 @@
         'name' => 'mahmud2074/laravel-query-logger',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '23fc493c9687d80c46842ca931f2b74b4a5071e8',
+        'reference' => '632c91aebddb201be9c33c69538decef425c455e',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -76,7 +76,7 @@
         'mahmud2074/laravel-query-logger' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '23fc493c9687d80c46842ca931f2b74b4a5071e8',
+            'reference' => '632c91aebddb201be9c33c69538decef425c455e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
