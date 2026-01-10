@@ -1,0 +1,22 @@
+{
+    "name": "mahmud/laravel-query-logger",
+    "description": "Route-wise SQL query logger with N+1 and slow query detection",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mahmud2074\\QueryLogger\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mahmud2074\\QueryLogger\\QueryLoggerServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": ">=7.1",
+        "illuminate/support": "^8|^9|^10|^11"
+    }
+}
