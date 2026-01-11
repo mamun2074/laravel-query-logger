@@ -160,7 +160,7 @@ This package logs **route + controller action**, which is the correct approach.
 ## 🐘 Supported Versions
 
 - PHP 7.1+
-- Laravel 8, 9, 10, 11
+- Laravel 5+
 
 ---
 
