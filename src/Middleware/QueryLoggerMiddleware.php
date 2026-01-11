@@ -14,6 +14,10 @@ class QueryLoggerMiddleware
     {
         $response = $next($request);
 
+        if (!env('APP_DEBUG', false)) {
+            return $response;
+        }
+
         if (!config('query-logger.enabled')) {
             return $response;
         }

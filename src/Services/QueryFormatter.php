@@ -14,7 +14,7 @@ class QueryFormatter
         return $sql;
     }
 
-    public static function caller(): string
+    public static function caller()
     {
 
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
@@ -27,32 +27,7 @@ class QueryFormatter
                 return $item['file'] . ':' . $item['line'];
             }
         }
-
-
-
-        // $ignored = [
-        //     'vendor/laravel/framework',
-        //     'vendor/mahmud/laravel-query-profiler',
-        //     'Illuminate\\',
-        // ];
-
-        // foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 20) as $trace) {
-
-        //     if (empty($trace['file'])) {
-        //         continue;
-        //     }
-
-        //     // Only userland app code
-        //     if (str_contains($trace['file'], DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR)) {
-        //         return $trace['file'] . ':' . ($trace['line'] ?? '0');
-        //     }
-
-        //     // Fallback: repository / domain folders
-        //     if (preg_match('#/(Repositories|Services|Models|Controllers)/#', $trace['file'])) {
-        //         return $trace['file'] . ':' . ($trace['line'] ?? '0');
-        //     }
-        // }
-
+        
         return 'framework/vendor';
     }
 }

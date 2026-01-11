@@ -16,6 +16,6 @@ class QueryFileLogger
 
         $file = $path . '/' . date('Y-m-d') . '.log';
 
-        File::append($file, json_encode($data, JSON_PRETTY_PRINT) . PHP_EOL);
+        File::prepend($file, json_encode($data, JSON_PRETTY_PRINT) . PHP_EOL);
     }
 }
