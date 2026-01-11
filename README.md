@@ -1,6 +1,6 @@
-# Laravel Query Profiler
+# Laravel Query Logger
 
-A lightweight **Laravel query profiling package** that logs **route-wise SQL queries**, detects **N+1 problems**, and highlights **slow queries** — without any web UI overhead.
+A lightweight **Laravel query logger package** that logs **route-wise SQL queries**, detects **N+1 problems**, and highlights **slow queries** — without any web UI overhead.
 
 Designed for **local & staging debugging**, not production.
 
@@ -31,7 +31,7 @@ Designed for **local & staging debugging**, not production.
 ## 📦 Installation
 
 ```bash
-composer require mahmud/laravel-query-profiler --dev
+composer require mahmud2074/laravel-query-logger --dev
 ```
 
 ---
@@ -47,8 +47,9 @@ php artisan vendor:publish --tag=config
 Environment variables:
 
 ```env
-QUERY_PROFILER=true
+QUERY_LOGGER=true
 QUERY_SLOW_MS=100
+N_PLUS_TYPE=raw
 ```
 
 ---
@@ -60,7 +61,7 @@ Register the middleware in `app/Http/Kernel.php`:
 ```php
 protected $middlewareGroups = [
     'api' => [
-        \Mahmud\QueryProfiler\Middleware\QueryProfilerMiddleware::class,
+        \Mahmud2074\QueryLogger\Middleware\QueryLoggerMiddleware::class,
     ],
 ];
 ```
@@ -78,7 +79,7 @@ GET /api/v1/users/1
 Logs will be written to:
 
 ```
-storage/logs/query-profiler/YYYY-MM-DD.log
+storage/logs/query-logger/YYYY-MM-DD.log
 ```
 
 ---
