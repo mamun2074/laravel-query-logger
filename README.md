@@ -1,96 +1,91 @@
-Laravel Query Profiler
+# Laravel Query Profiler
 
-A lightweight Laravel query profiling package that logs route-wise SQL queries, detects N+1 problems, and highlights slow queries — all without any web UI overhead.
+A lightweight **Laravel query profiling package** that logs **route-wise SQL queries**, detects **N+1 problems**, and highlights **slow queries** — without any web UI overhead.
 
-Designed for local & staging debugging, not production.
+Designed for **local & staging debugging**, not production.
 
-✨ Features
+---
 
-✅ Route-wise SQL query logging
+## ✨ Features
 
-✅ Exact SQL with bindings
+- Route-wise SQL query logging
+- Exact SQL with bindings
+- Total query count & execution time
+- Slow query detection
+- N+1 query detection
+- ENV-controlled
+- File-based logging (no UI)
+- Laravel auto-discovery support
 
-✅ Total query count & execution time
+---
 
-✅ Slow query detection
+## 🚫 What This Package Does NOT Do
 
-✅ N+1 query detection
+- No web UI / dashboard
+- No production monitoring
+- No query modification
+- No framework hacks
 
-✅ ENV-controlled
+---
 
-✅ File-based logging (no UI, no JS)
+## 📦 Installation
 
-✅ Laravel auto-discovery support
-
-🚫 What This Package Does NOT Do
-
-❌ No web UI / dashboard
-
-❌ No production monitoring
-
-❌ No query modification
-
-❌ No framework hacks
-
-📦 Installation
-1️⃣ Install via Composer
+```bash
 composer require mahmud/laravel-query-profiler --dev
+```
 
+---
 
-⚠️ Recommended only for local or staging environments.
+## ⚙️ Configuration
 
-⚙️ Configuration
-Publish config file
+Publish config file:
+
+```bash
 php artisan vendor:publish --tag=config
+```
 
+Environment variables:
 
-This will create:
-
-config/query-profiler.php
-
-Environment variables
+```env
 QUERY_PROFILER=true
 QUERY_SLOW_MS=100
+```
 
-Config options (config/query-profiler.php)
-return [
-    'enabled' => env('QUERY_PROFILER', false),
+---
 
-    // Mark queries slower than this (ms)
-    'slow_query_ms' => env('QUERY_SLOW_MS', 100),
+## 🧩 Middleware Setup
 
-    // Log directory
-    'log_path' => storage_path('logs/query-profiler'),
+Register the middleware in `app/Http/Kernel.php`:
 
-    // Same query repeated X times = N+1
-    'n_plus_one_threshold' => 3,
-];
-
-🧩 Middleware Setup
-
-Register the middleware in app/Http/Kernel.php:
-
+```php
 protected $middlewareGroups = [
     'api' => [
         \Mahmud\QueryProfiler\Middleware\QueryProfilerMiddleware::class,
     ],
 ];
+```
 
+---
 
-You may also register it in the web group if needed.
+## 🧪 Usage
 
-🧪 Usage
+Call any route that executes DB queries:
 
-Call any route that executes database queries:
-
+```
 GET /api/v1/users/1
-
+```
 
 Logs will be written to:
 
+```
 storage/logs/query-profiler/YYYY-MM-DD.log
+```
 
-📄 Sample Log Output
+---
+
+## 📄 Sample Log Output
+
+```json
 {
   "method": "GET",
   "path": "/api/v1/users/1",
@@ -109,60 +104,36 @@ storage/logs/query-profiler/YYYY-MM-DD.log
     ]
   }
 }
+```
 
-🚨 Important Notes
-❗ File & Line Detection
+---
 
-Due to Laravel’s internal query execution flow, exact file/line detection is not reliable when using DB::listen.
-Instead, this package logs:
+## 🚨 Important Notes
 
-Route path
+Exact file & line detection is **not reliable** with `DB::listen`.  
+This package logs **route + controller action**, which is the correct approach.
 
-HTTP method
+---
 
-Controller & action
+## 🐘 Supported Versions
 
-This is the correct and professional approach.
+- PHP 7.1+
+- Laravel 8, 9, 10, 11
 
-❗ Production Usage
+---
 
-DO NOT enable in production
-
-APP_ENV=local
-QUERY_PROFILER=true
-
-🧠 How N+1 Detection Works
-
-Normalizes SQL queries
-
-Groups repeated queries
-
-Flags them when repetition exceeds configured threshold
-
-🐘 Supported Versions
-
-PHP 7.1+
-
-Laravel 8, 9, 10, 11
-
-📜 License
+## 📜 License
 
 MIT License
 
-👨‍💻 Author
+---
 
-Md Al-Mahmud
-Senior Software Engineer
+## 👨‍💻 Author
 
-⭐ Contributing
+**Md Al-Mahmud**
+
+---
+
+## ⭐ Contributing
 
 Pull requests are welcome.
-Issues and feature requests are appreciated.
-
-🚀 Roadmap (Optional)
-
- Artisan command to analyze logs
-
- Text-based log formatter
-
- Per-route enable/disable
