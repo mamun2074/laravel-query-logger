@@ -31,7 +31,7 @@ Designed for **local & staging debugging**, not production.
 ## 📦 Installation
 
 ```bash
-composer require mahmud2074/laravel-query-logger --dev
+composer require mamun2074/laravel-query-logger
 ```
 
 ---
@@ -41,7 +41,7 @@ composer require mahmud2074/laravel-query-logger --dev
 Publish config file:
 
 ```bash
-php artisan vendor:publish --tag=config
+php artisan vendor:publish --tag=query-logger-config
 ```
 
 Environment variables:

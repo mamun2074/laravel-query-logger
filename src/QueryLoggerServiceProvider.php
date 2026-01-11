@@ -25,7 +25,7 @@ class QueryLoggerServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . './config/query-logger.php' => config_path('query-logger.php'),
-        ], 'config');
+        ], 'query-logger-config');
 
         DB::listen(function ($query) {
             app(QueryCollector::class)->collect($query);
