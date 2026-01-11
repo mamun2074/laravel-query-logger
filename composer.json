@@ -1,8 +1,14 @@
 {
-    "name": "mahmud2074/laravel-query-logger",
-    "description": "Route-wise SQL query logger with N+1 and slow query detection",
+    "name": "mamun2074/laravel-query-logger",
+    "description": "Advanced query logger for Laravel with N+1 detection, slow query highlighting and route-based filtering",
     "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "MD AL MAHMUD",
+            "email": "mamun120520@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Mahmud2074\\QueryLogger\\": "src/"
@@ -18,5 +24,7 @@
     "require": {
         "php": ">=7.1",
         "illuminate/support": "^5|^6|^7|^8|^9|^10|^11"
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
