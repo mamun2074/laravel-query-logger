@@ -54,20 +54,6 @@ N_PLUS_TYPE=raw
 
 ---
 
-## 🧩 Middleware Setup
-
-Register the middleware in `app/Http/Kernel.php`:
-
-```php
-protected $middlewareGroups = [
-    'api' => [
-        \Mahmud2074\QueryLogger\Middleware\QueryLoggerMiddleware::class,
-    ],
-];
-```
-
----
-
 ## 🧪 Usage
 
 Call any route that executes DB queries:
@@ -88,22 +74,77 @@ storage/logs/query-logger/YYYY-MM-DD.log
 
 ```json
 {
-  "method": "GET",
-  "path": "/api/v1/users/1",
-  "action": "App\\Http\\Controllers\\UserController@show",
-  "query_count": 6,
-  "total_time": 84,
-  "slow_queries": [
-    {
-      "sql": "SELECT * FROM orders WHERE user_id = 1",
-      "time": 140
-    }
-  ],
-  "n_plus_one": {
-    "SELECT * FROM posts WHERE user_id = ?": [
-      "... repeated 5 times ..."
+    "url": "http:\/\/localhost\/api\/public\/api\/v1\/login",
+    "method": "POST",
+    "query_count": 10,
+    "total_time": 66.79,
+    "slow_queries": [],
+    "n_plus_one": {
+        "select * from `oauth_clients` where `id` = ? limit ?": [
+            {
+                "sql": "select * from `oauth_clients` where `id` = 3 limit 1",
+                "raw": "select * from `oauth_clients` where `id` = ? limit 1",
+                "time": 0.61,
+                "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+            },
+            {
+                "sql": "select * from `oauth_clients` where `id` = 3 limit 1",
+                "raw": "select * from `oauth_clients` where `id` = ? limit 1",
+                "time": 0.31,
+                "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+            },
+            {
+                "sql": "select * from `oauth_clients` where `id` = 3 limit 1",
+                "raw": "select * from `oauth_clients` where `id` = ? limit 1",
+                "time": 0.84,
+                "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+            }
+        ]
+    },
+    "queries": [
+        {
+            "sql": "select * from `users` where `email` = 'mahmud@gmail.com' limit 1",
+            "raw": "select * from `users` where `email` = ? limit 1",
+            "time": 55.42,
+            "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:56"
+        },
+        {
+            "sql": "select exists(select * from `oauth_personal_access_clients`) as `exists`",
+            "raw": "select exists(select * from `oauth_personal_access_clients`) as `exists`",
+            "time": 1.92,
+            "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+        },
+        {
+            "sql": "select * from `oauth_personal_access_clients` order by `id` desc limit 1",
+            "raw": "select * from `oauth_personal_access_clients` order by `id` desc limit 1",
+            "time": 0.35,
+            "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+        },
+        {
+            "sql": "select * from `oauth_clients` where `oauth_clients`.`id` = 3 limit 1",
+            "raw": "select * from `oauth_clients` where `oauth_clients`.`id` = ? limit 1",
+            "time": 2.2,
+            "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+        },
+        {
+            "sql": "select * from `oauth_clients` where `id` = 3 limit 1",
+            "raw": "select * from `oauth_clients` where `id` = ? limit 1",
+            "time": 0.61,
+            "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+        },
+        {
+            "sql": "select * from `oauth_clients` where `id` = 3 limit 1",
+            "raw": "select * from `oauth_clients` where `id` = ? limit 1",
+            "time": 0.31,
+            "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+        },
+        {
+            "sql": "update `oauth_access_tokens` set `name` = 'Personal Access Token', `oauth_access_tokens`.`updated_at` = '2026-01-11 17:42:08' where `id` = 'd041ddee1fcf30a408c776ddd0628ba76ddf96682dd3a93fdbe8077f0576ca75fda7ee357df1a42d'",
+            "raw": "update `oauth_access_tokens` set `name` = ?, `oauth_access_tokens`.`updated_at` = ? where `id` = ?",
+            "time": 1.88,
+            "file": "C:\\xampp81\\htdocs\\api\\app\\Http\\Controllers\\API\\v1\\AuthController.php:66"
+        }
     ]
-  }
 }
 ```
 
