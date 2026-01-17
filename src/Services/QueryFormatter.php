@@ -3,12 +3,22 @@
 
 namespace Mahmud2074\QueryLogger\Services;
 
+use DateTimeInterface;
+
 class QueryFormatter
 {
     public static function format($sql, $bindings)
     {
         foreach ($bindings as $binding) {
-            $value = is_numeric($binding) ? $binding : "'{$binding}'";
+            if ($binding === null) {
+                $value = 'NULL';
+            } elseif ($binding instanceof DateTimeInterface) {
+                $value = "'" . $binding->format('Y-m-d H:i:s') . "'";
+            } elseif (is_numeric($binding)) {
+                $value = $binding;
+            } else {
+                $value = "'" . addslashes($binding) . "'";
+            }
             $sql = preg_replace('/\?/', $value, $sql, 1);
         }
         return $sql;
